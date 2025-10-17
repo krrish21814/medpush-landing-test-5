@@ -83,8 +83,8 @@ const OfferingModal = ({ offering, isOpen, onClose }: OfferingModalProps) => {
 
                     {/* Content Container */}
                     <div className="flex flex-col md:flex-row max-h-[90vh]">
-                        {/* Left Side - Image */}
-                        <div className="md:w-5/12 flex-shrink-0 relative h-64 md:h-auto">
+                        {/* Left Side - Image (Hidden on mobile) */}
+                        <div className="hidden md:block md:w-5/12 flex-shrink-0 relative">
                             <Image
                                 src={offering.image}
                                 alt={offering.title}
@@ -94,8 +94,8 @@ const OfferingModal = ({ offering, isOpen, onClose }: OfferingModalProps) => {
                             />
                         </div>
 
-                        {/* Right Side - Content */}
-                        <div className="md:w-7/12 overflow-y-auto p-6 md:p-8">
+                        {/* Right Side - Content (Full width on mobile) */}
+                        <div className="w-full md:w-7/12 overflow-y-auto p-6 md:p-8">
                             {/* Title with proper padding to avoid close button */}
                             <h3 className="text-2xl md:text-3xl font-bold text-[#C11E2B] mb-6 pr-10">
                                 {offering.title}
