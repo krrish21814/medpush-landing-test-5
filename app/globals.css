@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sora);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sora), system-ui, -apple-system, sans-serif;
+}
+
+/* Google Translate - Hide toolbar completely */
+body > .skiptranslate {
+  display: none !important;
+}
+
+body > .skiptranslate > iframe.skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+iframe.skiptranslate {
+  visibility: hidden !important;
+  display: none !important;
+}
+
+.skiptranslate {
+  display: none !important;
+}
+
+/* Additional class that sometimes appears */
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+}
+
+/* Prevent body from being pushed down */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+html {
+  position: static !important;
+}
+
+/* Optional: Smooth transition for RTL/LTR changes */
+html {
+  transition: direction 0.3s ease;
+}
