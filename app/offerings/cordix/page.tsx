@@ -60,7 +60,7 @@ const CordixPage = () => {
                 }`}
             >
                 <Image
-                    src="/images/cordix/cordix-hero.png"
+                    src="/images/cordix-hero.png"
                     alt="Cordix Division"
                     fill
                     className="object-cover"
