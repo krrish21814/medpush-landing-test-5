@@ -6,7 +6,6 @@ import OfferingModal from '@/components/modals/OfferingModal';
 import { useState, useEffect, useRef } from 'react';
 import { cordixData } from '@/app/data/offeringsData';
 
-
 const CordixPage = () => {
     const [isHeroVisible, setIsHeroVisible] = useState(false);
     const [isGridVisible, setIsGridVisible] = useState(false);
@@ -52,58 +51,109 @@ const CordixPage = () => {
 
     return (
         <>
-            {/* Hero Section */}
-            <section
-                ref={heroRef}
-                className={`relative w-full h-[300px] md:h-[400px] overflow-hidden mt-16 md:mt-24 ${
-                    isHeroVisible ? 'animate-fadeIn' : 'opacity-0'
-                }`}
-            >
-                <Image
-                    src="/images/cordix-hero.png"
-                    alt="Cordix Division"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-                <div className="absolute inset-0 bg-black/40"></div>
-                <div className="relative z-10 h-full flex items-center justify-center px-4">
-                    <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold text-center">
-                        Cordix division offerings
-                    </h1>
-                </div>
-            </section>
+            <style jsx>{`
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }
 
-            {/* Offerings Grid */}
-            <section className="py-12 md:py-16 lg:py-20 bg-white">
-                <div ref={gridRef} className="max-w-7xl mx-auto px-4 md:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {cordixData.map((offering, index) => (
-                            <div
-                                key={offering.id}
-                                onClick={() => handleCardClick(offering)}
-                                className={`cursor-pointer ${
-                                    visibleCards.includes(index) ? 'animate-fadeInUp' : 'opacity-0'
-                                }`}
-                            >
-                                <OfferingCard
-                                    image={offering.image}
-                                    title={offering.title}
-                                    logo={offering.logo}
-                                    bulletPoints={offering.bulletPoints}
-                                />
-                            </div>
-                        ))}
+                @keyframes slideUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .animate-fadeIn {
+                    animation: fadeIn 1s ease-out forwards;
+                }
+
+                .animate-slideUp {
+                    animation: slideUp 0.8s ease-out forwards;
+                    animation-delay: 0.3s;
+                    opacity: 0;
+                }
+
+                .animate-fadeInUp {
+                    animation: fadeInUp 0.6s ease-out forwards;
+                }
+            `}</style>
+
+            <div className="min-h-screen">
+                {/* Hero Section */}
+                <section 
+                    ref={heroRef} 
+                    className={`relative w-full h-[300px] md:h-[400px] overflow-hidden mt-16 md:mt-24 ${
+                        isHeroVisible ? 'animate-fadeIn' : 'opacity-0'
+                    }`}
+                >
+                    <Image
+                        src="/images/cordix-hero.png"
+                        alt="Cordix Division"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div className="relative z-10 h-full flex items-center justify-center px-4">
+                        <h1 className={`text-white text-3xl md:text-5xl lg:text-6xl font-bold text-center ${
+                            isHeroVisible ? 'animate-slideUp' : 'opacity-0'
+                        }`}>
+                            Cordix division offerings
+                        </h1>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* Modal */}
-            <OfferingModal
-                offering={selectedOffering}
-                isOpen={isModalOpen}
-                onClose={closeModal}
-            />
+                {/* Offerings Grid */}
+                <section className="py-12 md:py-16 lg:py-20 bg-white">
+                    <div ref={gridRef} className="max-w-7xl mx-auto px-4 md:px-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {cordixData.map((offering, index) => (
+                                <div
+                                    key={offering.id}
+                                    onClick={() => handleCardClick(offering)}
+                                    className={`cursor-pointer ${
+                                        visibleCards.includes(index) ? 'animate-fadeInUp' : 'opacity-0'
+                                    }`}
+                                >
+                                    <OfferingCard
+                                        image={offering.image}
+                                        title={offering.title}
+                                        logo={offering.logo}
+                                        bulletPoints={offering.bulletPoints}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Modal */}
+                <OfferingModal
+                    offering={selectedOffering}
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                />
+            </div>
         </>
     );
 };
