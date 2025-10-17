@@ -139,8 +139,7 @@ const Header = () => {
       >
         {/* White Rounded Card - Increased max-width */}
         <header
-          className={`max-w-[1550px] mx-2 bg-white rounded-full shadow-lg px-4 md:px-8 transition-all duration-300 ${isScrolled ? 'py-2 md:py-2.5' : 'py-2.5 md:py-3'
-            }`}
+          className={`max-w-[1550px] mx-auto bg-white rounded-full shadow-lg px-4 md:px-8 transition-all duration-300 ${isScrolled ? 'py-2 md:py-2.5' : 'py-2.5 md:py-3'}`}
         >
           <div className="flex items-center justify-between relative">
             {/* Logo */}
